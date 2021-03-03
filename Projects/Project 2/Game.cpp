@@ -58,6 +58,8 @@ void Game::StartGame()
         case 3:
             Game::CombineMaterials();
             break;
+        case 4:
+            Game::CalcScore();
         default:
             break;
         }
@@ -144,7 +146,6 @@ void Game::CombineMaterials()
                 if (combine_material[i].m_quantity > 0)
                 {
                     enoughMaterials2 = true;
-                    
                 }
                 break;
             }
@@ -220,4 +221,8 @@ int Game::SearchRecipes(string item1, string item2)
 
 void Game::CalcScore()
 {
+    cout << "\t\t*** The Ship ***\n\n";
+    cout << "The Great Ship " << m_myShip.GetName() << endl;
+    cout << "Ship Rank: " << m_myShip.GetRank() << endl;
+    cout << endl; 
 }

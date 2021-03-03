@@ -87,7 +87,7 @@ int Game::MainMenu()
 
 void Game::SearchMaterials()
 {
-    int searched_material = rand() % 23;
+    int searched_material = rand() % 24;
     int material_available = m_myShip.CheckMaterial(m_materials[searched_material]);
     if (material_available == -2)
     {

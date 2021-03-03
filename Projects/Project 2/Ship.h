@@ -16,7 +16,7 @@
 using namespace std;
 
 //Constants (allowed to add more as needed)
-const int PROJ2_SIZE = 61;
+const int PROJ2_SIZE = 62;
 const char RANKS[5] = {'D', 'C', 'B', 'A', 'S'};
 
 // class - allowed to add HELPER functions only

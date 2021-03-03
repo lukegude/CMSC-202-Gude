@@ -13,6 +13,7 @@ Glass,raw,0,0
 Indium,raw,0,0
 Kelp Sac,raw,0,0
 Mordite,raw,0,0
+Nitrogen,raw,0,0
 Oxygen,raw,0,0
 Phosphorus,raw,0,0
 Pugneum,raw,0,0

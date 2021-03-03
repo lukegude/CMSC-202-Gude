@@ -118,23 +118,25 @@ void Game::CombineMaterials()
         if (material_choice != -2)
         {
             combine_material[i] = m_myShip.GetMaterial(material_choice);
-            switch (i)
-            {
-            case 0:
-                if (combine_material[i].m_quantity > 0)
-                {
-                    enoughMaterials1 = true;
-                }
-                break;
-            case 1:
-                if (combine_material[i].m_quantity > 0)
-                {
-                    enoughMaterials2 = true;
-                }
-                break;
-            default:
-                break;
-            }
+        }
+    }
+    if (combine_material[0].m_name == combine_material[1].m_name)
+    {
+        if (combine_material[0].m_quantity > 1 && combine_material[1].m_quantity > 1)
+        {
+            enoughMaterials1 = true;
+            enoughMaterials2 = true;
+        }
+    }
+    else
+    {
+        if (combine_material[0].m_quantity > 0)
+        {
+            enoughMaterials1 = true;
+        }
+        else if (combine_material[1].m_quantity > 0)
+        {
+            enoughMaterials2 = true;
         }
     }
 

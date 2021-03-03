@@ -144,6 +144,7 @@ void Game::CombineMaterials()
                 if (combine_material[i].m_quantity > 0)
                 {
                     enoughMaterials2 = true;
+                    
                 }
                 break;
             }

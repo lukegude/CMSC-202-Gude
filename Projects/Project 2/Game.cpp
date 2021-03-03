@@ -130,13 +130,23 @@ void Game::CombineMaterials()
     }
     else
     {
-        if (combine_material[0].m_quantity > 0)
+        for (int i = 0; i < 2; i++)
         {
-            enoughMaterials1 = true;
-        }
-        else if (combine_material[1].m_quantity > 0)
-        {
-            enoughMaterials2 = true;
+            switch (i)
+            {
+            case 0:
+                if (combine_material[i].m_quantity > 0)
+                {
+                    enoughMaterials1 = true;
+                }
+                break;
+            case 1:
+                if (combine_material[i].m_quantity > 0)
+                {
+                    enoughMaterials2 = true;
+                }
+                break;
+            }
         }
     }
 

@@ -18,7 +18,8 @@
 #include <ctime>
 using namespace std;
 
-int main () {
+int main()
+{
   srand(time(NULL));
   Game newGame;
   newGame.StartGame();

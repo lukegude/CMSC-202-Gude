@@ -224,5 +224,4 @@ void Game::CalcScore()
     cout << "\t\t*** The Ship ***\n\n";
     cout << "The Great Ship " << m_myShip.GetName() << endl;
     cout << "Ship Rank: " << m_myShip.GetRank() << endl;
-    cout << endl; 
 }

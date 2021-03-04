@@ -39,7 +39,7 @@ Holographic Analyser,common,Oxygen Filter,Gold
 Hot Ice,uncommon,Nitrogen Salt,Enriched Carbon
 Ionised Cobalt,common,Cobalt,Oxygen
 Lemmium,common,Uranium,Pure Ferrite
-Liquid Explosive,uncommon,Acid ,Unstable Gel
+Liquid Explosive,uncommon,Acid,Unstable Gel
 Living Glass,uncommon,Lubricant,Glass
 Lubricant,common,Faecium,Gamma Root
 Magnetised Ferrite,common,Pure Ferrite,Condensed Carbon

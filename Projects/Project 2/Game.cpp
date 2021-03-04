@@ -35,7 +35,7 @@ void Game::LoadMaterials()
 
 void Game::StartGame()
 {
-    int unique_item_count = 0;
+    bool gameWon = false;
     string ship_name;
     int menu_option = -1;
     Game::GameTitle();
@@ -44,7 +44,7 @@ void Game::StartGame()
     getline(cin, ship_name);
     Ship player_ship(ship_name);
     m_myShip = player_ship;
-    while (menu_option != 5)
+    while (menu_option != 5 && gameWon == false)
     {
         menu_option = Game::MainMenu();
         switch (menu_option)
@@ -63,6 +63,14 @@ void Game::StartGame()
         default:
             break;
         }
+    }
+    if (menu_option == 5)
+    {
+        cout << "Thanks for playing!\n";
+    }
+    else
+    {
+        cout << "Congratulations, You Won!!\n";
     }
 }
 
@@ -161,15 +169,26 @@ void Game::CombineMaterials()
         }
         else
         {
-            if (m_materials[found_recipe].m_type != "unique" && m_materials[found_recipe].m_quantity < 1)
+            if ((m_materials[found_recipe].m_type != "unique" && m_materials[found_recipe].m_quantity < 1))
             {
                 cout << combine_material[0].m_name << " combined with " << combine_material[1].m_name << " to make " << m_materials[found_recipe].m_name << endl;
                 m_myShip.DecrementQuantity(combine_material[0]);
                 m_myShip.DecrementQuantity(combine_material[1]);
-                m_myShip.IncrementQuantity(m_materials[found_recipe]);
+                if (m_myShip.CheckMaterial(m_materials[found_recipe]) == -2)
+                {
+                    m_myShip.AddMaterial(m_materials[found_recipe]);
+                }
+                else
+                {
+                    m_myShip.IncrementQuantity(m_materials[found_recipe]);
+                }
                 m_materials[choices[0]].m_quantity--;
                 m_materials[choices[1]].m_quantity--;
                 m_materials[found_recipe].m_quantity++;
+                if (m_materials[found_recipe].m_type == "unique")
+                {
+                    m_myShip.IncRank();
+                }
             }
             else
             {
@@ -197,6 +216,12 @@ void Game::RequestMaterial(int &choice)
     cin.clear();
     cin.ignore(256, '\n');
     cin >> choice;
+    while ((choice > PROJ2_SIZE || choice < 1) && choice != -1){
+        cout << "Which materials would you like to merge?\n\nTo list known materials enter -1\n\n";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> choice;
+    }
     while (choice == -1)
     {
         Game::DisplayMaterials();
@@ -209,10 +234,13 @@ void Game::RequestMaterial(int &choice)
 
 int Game::SearchRecipes(string item1, string item2)
 {
+    bool firstRecipe = false;
+    bool secondRecipe = false;
     for (int i = 0; i < PROJ2_SIZE; i++)
     {
-        if ((item1 == m_materials[i].m_material1 || item1 == m_materials[i].m_material2) && (item2 == m_materials[i].m_material1 || item2 == m_materials[i].m_material2))
+        if ((item1 == m_materials[i].m_material1 && item2 == m_materials[i].m_material2) || (item2 == m_materials[i].m_material1 && item1 == m_materials[i].m_material2))
         {
+            cout << i << endl;
             return i;
         }
     }

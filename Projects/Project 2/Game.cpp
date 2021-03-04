@@ -216,7 +216,8 @@ void Game::RequestMaterial(int &choice)
     cin.clear();
     cin.ignore(256, '\n');
     cin >> choice;
-    while ((choice > PROJ2_SIZE || choice < 1) && choice != -1){
+    while ((choice > PROJ2_SIZE || choice < 1) && choice != -1)
+    {
         cout << "Which materials would you like to merge?\n\nTo list known materials enter -1\n\n";
         cin.clear();
         cin.ignore(256, '\n');
@@ -234,8 +235,6 @@ void Game::RequestMaterial(int &choice)
 
 int Game::SearchRecipes(string item1, string item2)
 {
-    bool firstRecipe = false;
-    bool secondRecipe = false;
     for (int i = 0; i < PROJ2_SIZE; i++)
     {
         if ((item1 == m_materials[i].m_material1 && item2 == m_materials[i].m_material2) || (item2 == m_materials[i].m_material1 && item1 == m_materials[i].m_material2))

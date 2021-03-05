@@ -169,8 +169,11 @@ void Game::CombineMaterials()
         }
         else
         {
-            if ((m_materials[found_recipe].m_type != "unique" && m_materials[found_recipe].m_quantity < 1))
+            if ((m_materials[found_recipe].m_type == "unique" && m_materials[found_recipe].m_quantity > 1))
             {
+                cout << "You can only have one of " << m_materials[found_recipe].m_name << endl;
+            }
+            else{
                 cout << combine_material[0].m_name << " combined with " << combine_material[1].m_name << " to make " << m_materials[found_recipe].m_name << endl;
                 m_myShip.DecrementQuantity(combine_material[0]);
                 m_myShip.DecrementQuantity(combine_material[1]);
@@ -189,10 +192,6 @@ void Game::CombineMaterials()
                 {
                     m_myShip.IncRank();
                 }
-            }
-            else
-            {
-                cout << "You can only have one of " << m_materials[found_recipe].m_name << endl;
             }
         }
     }
@@ -239,7 +238,6 @@ int Game::SearchRecipes(string item1, string item2)
     {
         if ((item1 == m_materials[i].m_material1 && item2 == m_materials[i].m_material2) || (item2 == m_materials[i].m_material1 && item1 == m_materials[i].m_material2))
         {
-            cout << i << endl;
             return i;
         }
     }

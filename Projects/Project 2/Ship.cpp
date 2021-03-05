@@ -90,19 +90,15 @@ void Ship::IncRank()
     {
     case 'D':
         m_shipRank = RANKS[1];
-        cout << "Ship rank increased to " << m_shipRank << endl;
         break;
     case 'C':
         m_shipRank = RANKS[2];
-        cout << "Ship rank increased to " << m_shipRank << endl;
         break;
     case 'B':
         m_shipRank = RANKS[3];
-        cout << "Ship rank increased to " << m_shipRank << endl;
         break;
     case 'A':
         m_shipRank = RANKS[4];
-        cout << "Ship rank increased to " << m_shipRank << endl;
         break;
 
     default:

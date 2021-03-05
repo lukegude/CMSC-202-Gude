@@ -7,8 +7,12 @@
 #include "Book.h"
 using namespace std;
 
+<<<<<<< HEAD
 int main()
 {
+=======
+int main() {
+>>>>>>> 472530cd859bc92d532c5688f1e57555513dee88
   //**Student Requirement**
   //Part 1: Create 2 books by instantiating them
   Book book1;
@@ -17,8 +21,14 @@ int main()
   //Part 2: Set their values for book name, cover type, and amount of check-outs.
   book1.setName("Pride and Predudice");
   book1.setCheckout(0);
+<<<<<<< HEAD
   book1.setHardcover(false);
 
+=======
+  book1.setHardcover(false); 
+  
+  
+>>>>>>> 472530cd859bc92d532c5688f1e57555513dee88
   book2.setName("Cat in the Hat");
   book2.setCheckout(6);
   book2.setHardcover(true);
@@ -30,6 +40,10 @@ int main()
   cout << "Number of Checkouts: " << book1.getCheckouts() << endl;
   cout << "Hardcover/Paperback: " << book1.isHardcover() << endl;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 472530cd859bc92d532c5688f1e57555513dee88
   cout << "Data of Book2:\n";
   cout << "Book Name: " << book2.getName() << endl;
   cout << "Number of Checkouts: " << book2.getCheckouts() << endl;
@@ -40,11 +54,21 @@ int main()
   book1.checkHardCover();
   book2.checkHardCover();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 472530cd859bc92d532c5688f1e57555513dee88
   //**Student Requirement**
   //Part 5: Update data members with custom function: Add 1 check-out to the amount of check-outs
   //Display updated amount of check-outs
   book1.addCheckOut();
   book2.addCheckOut();
 
+<<<<<<< HEAD
+=======
+
+
+  
+>>>>>>> 472530cd859bc92d532c5688f1e57555513dee88
   return 0;
 }

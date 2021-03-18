@@ -1,3 +1,14 @@
+/*******************************************************************
+** File: proj3.cpp 
+** Project: CMSC 202 Project 3, Spring 2021
+** Author: Luke Gude
+** Date: 03/18/2021
+** Section: 10/12
+** E-Mail: lgude1@umbc.edu
+**
+** This is the main function for Project 3
+*******************************************************************/
+
 #include "Sequencer.h"
 #include <iostream>
 using namespace std;

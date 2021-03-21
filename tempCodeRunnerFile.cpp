@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 using namespace std;
 int main (){
-    cout << true << endl;
+    string h = "Hello";
+    cout << h[2] << endl;
 }

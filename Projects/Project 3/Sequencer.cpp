@@ -12,12 +12,19 @@ Sequencer::Sequencer(string filename)
 {
     m_fileName = filename;
     Sequencer::ReadFile();
+    Sequencer::DisplayStrands();
 }
 
-Sequencer::~Sequencer() {}
+Sequencer::~Sequencer()
+{
+}
 
 void Sequencer::DisplayStrands()
 {
+    for (int i = 0; i < m_suspects.size(); i++)
+    {
+        cout << m_suspects[i]->GetName() << endl;
+    }
 }
 
 int Get_File_Lines(string filename)
@@ -48,16 +55,20 @@ void Sequencer::ReadFile()
             DNA new_Strand(name);
             for (int i = 0; i < strand.length(); i++)
             {
-                if (strand[i] == ','){}
+                if (strand[i] == ',')
+                {
+                }
                 else
                 {
                     new_Strand.InsertEnd(strand[i]);
                 }
             }
-            if (name.find("Suspect")){
+            if (name.find("Suspect") && !name.find("Evidence"))
+            {
                 m_suspects.push_back(&new_Strand);
             }
-            else if (name.find("Evidence")){
+            else if (name.find("Evidence") && !name.find("Suspect"))
+            {
                 m_evidence.push_back(&new_Strand);
             }
         }

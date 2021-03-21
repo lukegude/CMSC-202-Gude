@@ -29,20 +29,20 @@ DNA::~DNA()
 
 void DNA::InsertEnd(char data)
 {
-    Node *new_node, *temp;
+    Node *tmp = new Node;
+    tmp->m_data = data;
+    tmp->m_next = NULL;
+    if (m_head == NULL)
+    {
+        m_head = tmp;
+        m_tail = tmp;
+    }
+    else
+    {
+        m_tail->m_next = tmp;
+        m_tail = m_tail->m_next;
+    }
     m_size++;
-    if (new_node == nullptr)
-    {
-        m_head = temp;
-        temp->m_next = nullptr;
-        return;
-    }
-    while (new_node->m_next != NULL)
-    {
-        new_node = new_node->m_next;
-    }
-    temp->m_next = NULL;
-    new_node->m_next = temp;
 }
 
 string DNA::GetName()
@@ -50,6 +50,7 @@ string DNA::GetName()
     return m_name;
 }
 
-int DNA::GetSize(){
+int DNA::GetSize()
+{
     return m_size;
 }

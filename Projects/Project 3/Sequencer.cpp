@@ -54,6 +54,12 @@ void Sequencer::ReadFile()
                     new_Strand.InsertEnd(strand[i]);
                 }
             }
+            if (name.find("Suspect")){
+                m_suspects.push_back(&new_Strand);
+            }
+            else if (name.find("Evidence")){
+                m_evidence.push_back(&new_Strand);
+            }
         }
     }
 }

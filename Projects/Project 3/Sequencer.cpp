@@ -12,7 +12,6 @@ Sequencer::Sequencer(string filename)
 {
     m_fileName = filename;
     Sequencer::ReadFile();
-    Sequencer::DisplayStrands();
 }
 
 Sequencer::~Sequencer()
@@ -21,9 +20,11 @@ Sequencer::~Sequencer()
 
 void Sequencer::DisplayStrands()
 {
-    for (int i = 0; i < m_suspects.size(); i++)
-    {
-        cout << m_suspects[i]->GetName() << endl;
+    for (int i = 0; i < m_suspects.size(); i++){
+        cout << *m_suspects[i] << endl << endl;
+    }
+    for (int i = 0; i < m_evidence.size();i++){
+        cout << *m_evidence[i]<< endl;
     }
 }
 
@@ -52,7 +53,7 @@ void Sequencer::ReadFile()
             string strand;
             getline(case_file, name);
             getline(case_file, strand);
-            DNA new_Strand(name);
+            DNA* new_Strand = new DNA(name);
             for (int i = 0; i < strand.length(); i++)
             {
                 if (strand[i] == ',')
@@ -60,17 +61,18 @@ void Sequencer::ReadFile()
                 }
                 else
                 {
-                    new_Strand.InsertEnd(strand[i]);
+                    new_Strand -> InsertEnd(strand[i]);
                 }
             }
             if (name.find("Suspect") && !name.find("Evidence"))
             {
-                m_suspects.push_back(&new_Strand);
+                m_evidence.push_back(new_Strand);
             }
             else if (name.find("Evidence") && !name.find("Suspect"))
             {
-                m_evidence.push_back(&new_Strand);
+                m_suspects.push_back(new_Strand);
             }
         }
+        case_file.close();
     }
 }

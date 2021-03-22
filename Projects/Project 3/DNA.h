@@ -60,7 +60,7 @@ class DNA {
   // Desc: Overloaded << operator to return ostream from DNA
   // Preconditions: Requires a DNA sequence
   // Postconditions: Returns ostream populated from each node
-  friend ostream &operator<< (ostream &output, DNA &myDNA);
+  friend ostream &operator<< (ostream &output,DNA &myDNA);
  private:
   string m_name; //Name of the DNA (suspect or evidence)
   Node *m_head; //Front of the DNA

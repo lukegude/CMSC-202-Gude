@@ -29,17 +29,17 @@ DNA::~DNA()
 
 void DNA::InsertEnd(char data)
 {
-    Node *tmp = new Node;
-    tmp->m_data = data;
-    tmp->m_next = NULL;
+    Node *temp = new Node;
+    temp->m_data = data;
+    temp->m_next = NULL;
     if (m_head == NULL)
     {
-        m_head = tmp;
-        m_tail = tmp;
+        m_head = temp;
+        m_tail = temp;
     }
     else
     {
-        m_tail->m_next = tmp;
+        m_tail->m_next = temp;
         m_tail = m_tail->m_next;
     }
     m_size++;
@@ -53,4 +53,32 @@ string DNA::GetName()
 int DNA::GetSize()
 {
     return m_size;
+}
+
+char DNA::GetData(int nodeNum)
+{
+    Node *current;
+    current = m_head;
+    for (int i = 0; i < nodeNum - 1; i++)
+    {
+        current = current->m_next;
+    }
+    return current->m_data;
+}
+
+ostream &operator<<(ostream &output, DNA &myDNA)
+{
+    output << myDNA.m_name << endl;
+    Node *current = myDNA.m_head;
+    while (current != NULL){
+        output << current->m_data << "->";
+        current = current -> m_next;
+    }
+    output << "END";
+    return output;
+    // for(int i = 0; i< myDNA.GetSize(); i++){
+    //     output << myDNA.GetData(i) << "->";
+    // }
+
+    
 }

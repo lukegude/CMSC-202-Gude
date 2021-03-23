@@ -17,17 +17,19 @@ Sequencer::Sequencer(string filename)
 
 Sequencer::~Sequencer()
 {
-    int suspect_size = m_suspects.size();
-    int evidence_size = m_evidence.size();
+    int suspect_size = int(m_suspects.size());
+    int evidence_size = int(m_evidence.size());
     cout << "DNA removed from memory\n";
     cout << "Deleting Suspects\n";
-    for (int i = 0; i < suspect_size;i++){
+    for (int i = 0; i < suspect_size; i++)
+    {
         delete m_suspects[i];
         m_suspects[i] = NULL;
     }
     m_suspects.clear();
     cout << "Deleting Evidence\n";
-    for (int i = 0; i < evidence_size; i++){
+    for (int i = 0; i < evidence_size; i++)
+    {
         delete m_evidence[i];
         m_evidence[i] = NULL;
     }
@@ -72,12 +74,12 @@ void Sequencer::MainMenu()
 
 void Sequencer::DisplayStrands()
 {
-    for (int i = 0; i < m_suspects.size(); i++)
+    for (int i = 0; i < int(m_suspects.size()); i++)
     {
         cout << *m_suspects[i] << endl
              << endl;
     }
-    for (int i = 0; i < m_evidence.size(); i++)
+    for (int i = 0; i < int(m_evidence.size()); i++)
     {
         cout << *m_evidence[i] << endl;
     }
@@ -97,9 +99,9 @@ int Get_File_Lines(string filename)
 
 void Sequencer::CheckSuspects()
 {
-    for (int i = 0; i < m_suspects.size(); i++)
+    for (int i = 0; i < int(m_suspects.size()); i++)
     {
-        for (int j = 0; j < m_evidence.size(); j++)
+        for (int j = 0; j < int(m_evidence.size()); j++)
         {
             if (m_suspects[i]->CompareSequence(*m_evidence[j]))
             {
@@ -138,11 +140,11 @@ void Sequencer::ReadFile()
                     new_Strand->InsertEnd(strand[i]);
                 }
             }
-            if (name.find("Suspect") && !name.find("Evidence"))
+            if (name[0] == 'E')
             {
                 m_evidence.push_back(new_Strand);
             }
-            else if (name.find("Evidence") && !name.find("Suspect"))
+            else if (name[0] == 'S')
             {
                 m_suspects.push_back(new_Strand);
             }
@@ -153,13 +155,15 @@ void Sequencer::ReadFile()
     }
 }
 
-void Sequencer::ReverseSequence(){
+void Sequencer::ReverseSequence()
+{
     int choice;
     cout << "What type of sequence to reverse?\n";
     cout << "1. Suspect\n";
     cout << "2. Evidence\n";
     cin >> choice;
-    while (cin.fail()|| choice > 2 || choice < 1){
+    while (cin.fail() || choice > 2 || choice < 1)
+    {
         cin.clear();
         cout << "Must choose 1 or 2\n";
         cout << "What type of sequence to reverse?\n";
@@ -167,20 +171,22 @@ void Sequencer::ReverseSequence(){
         cout << "2. Evidence\n";
         cin >> choice;
     }
-    switch (choice){
-        case 1:
+    switch (choice)
+    {
+    case 1:
 
-        for (int i = 0; i < m_suspects.size();i++){
+        for (int i = 0; i < int(m_suspects.size()); i++)
+        {
             m_suspects[i]->ReverseSequence();
         }
-            break;
-        case 2:
-            for (int i = 0; i < m_evidence.size(); i++)
-            {
-                m_evidence[i]->ReverseSequence();
-            }
-            break;
-        default:
-            break;
+        break;
+    case 2:
+        for (int i = 0; i < int(m_evidence.size()); i++)
+        {
+            m_evidence[i]->ReverseSequence();
+        }
+        break;
+    default:
+        break;
     }
 }

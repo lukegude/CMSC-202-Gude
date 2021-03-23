@@ -29,7 +29,7 @@ DNA::~DNA()
 
 void DNA::InsertEnd(char data)
 {
-    Node *temp = new Node;
+    Node* temp = new Node;
     temp->m_data = data;
     temp->m_next = NULL;
     if (m_head == NULL)
@@ -42,7 +42,9 @@ void DNA::InsertEnd(char data)
         m_tail->m_next = temp;
         m_tail = m_tail->m_next;
     }
+    temp = nullptr;
     m_size++;
+    delete temp;
 }
 
 string DNA::GetName()

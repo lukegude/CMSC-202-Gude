@@ -55,6 +55,10 @@ int DNA::GetSize()
     return m_size;
 }
 
+bool CompareSequence(DNA &evidence)
+{
+}
+
 char DNA::GetData(int nodeNum)
 {
     Node *current;
@@ -70,15 +74,11 @@ ostream &operator<<(ostream &output, DNA &myDNA)
 {
     output << myDNA.m_name << endl;
     Node *current = myDNA.m_head;
-    while (current != NULL){
+    while (current != NULL)
+    {
         output << current->m_data << "->";
-        current = current -> m_next;
+        current = current->m_next;
     }
     output << "END";
     return output;
-    // for(int i = 0; i< myDNA.GetSize(); i++){
-    //     output << myDNA.GetData(i) << "->";
-    // }
-
-    
 }

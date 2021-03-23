@@ -55,8 +55,36 @@ int DNA::GetSize()
     return m_size;
 }
 
-bool CompareSequence(DNA &evidence)
+bool DNA::CompareSequence(DNA &evidence)
 {
+
+    int evidence_size = evidence.GetSize();
+    Node *temp, *current, *evidence_curr;
+    evidence_curr = evidence.m_head;
+    current = m_head;
+    temp = current;
+    while (temp != NULL)
+    {
+        current = temp;
+        for (int i = 0; i < evidence_size; i++)
+        {
+            if (current->m_data == evidence_curr->m_data)
+            {
+                current = current->m_next;
+                evidence_curr = evidence_curr->m_next;
+            }
+        }
+        if (evidence_curr == NULL)
+        {
+            return true;
+        }
+        else
+        {
+            temp = temp->m_next;
+            evidence_curr = evidence.m_head;
+        }
+    }
+    return false;
 }
 
 char DNA::GetData(int nodeNum)

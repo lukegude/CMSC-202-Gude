@@ -12,6 +12,15 @@ Sequencer::Sequencer(string filename)
 {
     m_fileName = filename;
     Sequencer::ReadFile();
+    Sequencer::MainMenu();
+}
+
+Sequencer::~Sequencer()
+{
+}
+
+void Sequencer::MainMenu()
+{
     int choice;
     do
     {
@@ -30,15 +39,18 @@ Sequencer::Sequencer(string filename)
         case 1:
             Sequencer::DisplayStrands();
             break;
+        case 2:
+            break;
+        case 3:
+            Sequencer::CheckSuspects();
+            break;
+        case 4:
+            break;
 
         default:
             break;
         }
     } while (choice != 4);
-}
-
-Sequencer::~Sequencer()
-{
 }
 
 void Sequencer::DisplayStrands()
@@ -64,6 +76,25 @@ int Get_File_Lines(string filename)
         line_counter++;
     }
     return line_counter;
+}
+
+void Sequencer::CheckSuspects()
+{
+    for (int i = 0; i < m_suspects.size(); i++)
+    {
+        for (int j = 0; j < m_evidence.size(); j++)
+        {
+            if (m_suspects[i]->CompareSequence(*m_evidence[j]))
+            {
+                cout << "Suspect " << i + 1 << " matches Evidence " << j + 1 << endl;
+            }
+            else
+            {
+                cout << "Suspect " << i + 1 << " does NOT match Evidence " << j + 1 << endl;
+            }
+        }
+    }
+    // cout << m_suspects[1]->CompareSequence(*m_evidence[0]);
 }
 
 void Sequencer::ReadFile()

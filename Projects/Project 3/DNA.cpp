@@ -97,6 +97,7 @@ bool DNA::CompareSequence(DNA &evidence)
 void DNA::ReverseSequence()
 {
     Node *current = m_head;
+    Node *head = m_head;
     Node *previous, *next;
     previous = nullptr;
     next = nullptr;
@@ -109,6 +110,7 @@ void DNA::ReverseSequence()
         current = next;
     }
     m_head = previous;
+    m_tail = head;
 }
 
 char DNA::GetData(int nodeNum)

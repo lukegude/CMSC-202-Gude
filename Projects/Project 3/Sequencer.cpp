@@ -23,8 +23,8 @@ Sequencer::~Sequencer()
     cout << "Deleting Suspects\n";
     for (int i = 0; i < suspect_size; i++)
     {
-        delete m_suspects[i];
-        m_suspects[i] = NULL;
+            delete m_suspects[i];
+            m_suspects[i] = NULL;
     }
     m_suspects.clear();
     cout << "Deleting Evidence\n";

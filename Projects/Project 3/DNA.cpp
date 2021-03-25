@@ -29,7 +29,7 @@ DNA::~DNA()
 
 void DNA::InsertEnd(char data)
 {
-    Node* temp = new Node;
+    Node *temp = new Node;
     temp->m_data = data;
     temp->m_next = NULL;
     if (m_head == NULL)
@@ -61,7 +61,9 @@ bool DNA::CompareSequence(DNA &evidence)
 {
 
     int evidence_size = evidence.GetSize();
-    Node *temp, *current, *evidence_curr;
+    Node *temp;
+    Node *current;
+    Node *evidence_curr;
     evidence_curr = evidence.m_head;
     current = m_head;
     temp = current;
@@ -70,10 +72,13 @@ bool DNA::CompareSequence(DNA &evidence)
         current = temp;
         for (int i = 0; i < evidence_size; i++)
         {
-            if (current->m_data == evidence_curr->m_data)
+            if (current != NULL)
             {
-                current = current->m_next;
-                evidence_curr = evidence_curr->m_next;
+                if (current->m_data == evidence_curr->m_data)
+                {
+                    current = current->m_next;
+                    evidence_curr = evidence_curr->m_next;
+                }
             }
         }
         if (evidence_curr == NULL)
@@ -89,19 +94,19 @@ bool DNA::CompareSequence(DNA &evidence)
     return false;
 }
 
-
-void DNA::ReverseSequence(){
-    Node* current = m_head;
+void DNA::ReverseSequence()
+{
+    Node *current = m_head;
     Node *previous, *next;
     previous = nullptr;
     next = nullptr;
 
-    while (current != NULL){
+    while (current != NULL)
+    {
         next = current->m_next;
-        current ->m_next = previous;
+        current->m_next = previous;
         previous = current;
         current = next;
-
     }
     m_head = previous;
 }

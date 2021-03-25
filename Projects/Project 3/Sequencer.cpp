@@ -63,9 +63,6 @@ void Sequencer::MainMenu()
         case 3:
             Sequencer::CheckSuspects();
             break;
-        case 4:
-            break;
-
         default:
             break;
         }
@@ -99,17 +96,26 @@ int Get_File_Lines(string filename)
 
 void Sequencer::CheckSuspects()
 {
-    for (int i = 0; i < int(m_suspects.size()); i++)
+    int suspect_size = int(m_suspects.size());
+    int evidence_size = int(m_evidence.size());
+    for (int i = 0; i < suspect_size; i++)
     {
-        for (int j = 0; j < int(m_evidence.size()); j++)
+        for (int j = 0; j < evidence_size; j++)
         {
-            if (m_suspects[i]->CompareSequence(*m_evidence[j]))
+            int match_counter = 0;
+            bool isMatching = m_suspects[i]->CompareSequence(*m_evidence[j]);
+            if (isMatching)
             {
                 cout << "Suspect " << i + 1 << " matches Evidence " << j + 1 << endl;
+                match_counter++;
             }
             else
             {
                 cout << "Suspect " << i + 1 << " does NOT match Evidence " << j + 1 << endl;
+            }
+            if (match_counter == evidence_size)
+            {
+                cout << "Suspect " << i + 1 << " matches ALL Evidence!\n";
             }
         }
     }

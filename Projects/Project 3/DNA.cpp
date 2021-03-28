@@ -23,6 +23,16 @@ DNA::DNA(string name)
 
 DNA::~DNA()
 {
+    while (m_head != NULL)
+    {
+        Node *temp = m_head->m_next;
+        if (temp != NULL)
+        {
+            delete m_head;
+        }
+
+        m_head = temp;
+    }
     delete m_head;
     delete m_tail;
 }

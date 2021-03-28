@@ -42,8 +42,8 @@ void DNA::InsertEnd(char data)
         m_tail->m_next = temp;
         m_tail = m_tail->m_next;
     }
-    temp = nullptr;
     m_size++;
+    temp = nullptr;
     delete temp;
 }
 

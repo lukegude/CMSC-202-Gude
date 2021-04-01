@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["proj3_case1.txt"],
+            "args":[],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

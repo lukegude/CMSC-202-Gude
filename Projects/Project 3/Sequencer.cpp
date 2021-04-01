@@ -17,16 +17,16 @@ Sequencer::Sequencer(string filename)
 
 Sequencer::~Sequencer()
 {
-    int suspect_size = int(m_suspects.size());
-    int evidence_size = int(m_evidence.size());
+    int suspect_size = int(m_suspects.size());  //Constant for suspect size
+    int evidence_size = int(m_evidence.size()); //Constant for evidence size
     cout << "DNA removed from memory\n";
     cout << "Deleting Suspects\n";
-    for (int i = 0; i < suspect_size; i++)
+    for (int i = 0; i < suspect_size; i++) //iterates through each suspect and deletes
     {
-            delete m_suspects[i];
-            m_suspects[i] = NULL;
+        delete m_suspects[i];
+        m_suspects[i] = NULL;
     }
-    m_suspects.clear();
+    m_suspects.clear(); //clears the vector of unallocated memory
     cout << "Deleting Evidence\n";
     for (int i = 0; i < evidence_size; i++)
     {
@@ -38,7 +38,7 @@ Sequencer::~Sequencer()
 
 void Sequencer::MainMenu()
 {
-    int choice;
+    int choice; //User inputted choice
     do
     {
         cout << "What would you like to do?:\n\n";
@@ -82,6 +82,7 @@ void Sequencer::DisplayStrands()
     }
 }
 
+// Helper function to count the lines of the file
 int Get_File_Lines(string filename)
 {
     ifstream file(filename);
@@ -138,24 +139,24 @@ void Sequencer::ReadFile()
             DNA *new_Strand = new DNA(name);
             for (int i = 0; i < strand.length(); i++)
             {
-                if (strand[i] == ',')
+                if (strand[i] == ',') //ignores the comma
                 {
                 }
                 else
                 {
-                    new_Strand->InsertEnd(strand[i]);
+                    new_Strand->InsertEnd(strand[i]); //adds char to linked list
                 }
             }
-            if (name[0] == 'E')
+            if (name[0] == 'E') //Name is evidence
             {
                 m_evidence.push_back(new_Strand);
             }
-            else if (name[0] == 'S')
+            else if (name[0] == 'S') //Name is suspect
             {
                 m_suspects.push_back(new_Strand);
             }
         }
-        strands_loaded = m_suspects.size() + m_evidence.size();
+        strands_loaded = m_suspects.size() + m_evidence.size(); //count of all of the strands
         cout << strands_loaded << " strands loaded." << endl;
         case_file.close();
     }

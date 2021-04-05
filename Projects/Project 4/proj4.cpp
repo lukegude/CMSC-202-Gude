@@ -1,7 +1,15 @@
-//Title: proj4.cpp
-//Author: Jeremy Dixon
-//Date: 3/21/2021
-//Description: Builds a farm and starts the simulation (nothing random)
+
+/*******************************************************************
+** File: proj4.cpp 
+** Project: CMSC 202 Project 4, Spring 2021
+** Author: Luke Gude
+** Date: 04/02/2021
+** Section: 10/12
+** E-Mail: lgude1@umbc.edu
+**
+** Builds a farm and starts the simulation (nothing random)
+*******************************************************************/
+
 #include <iostream>
 #include <string>
 using namespace std;

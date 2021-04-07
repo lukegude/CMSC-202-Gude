@@ -167,10 +167,10 @@ void Farm::StartSimulation()
         }
         case 3:
         {
+            int tick_choice;
             cout << "How many seasons to simulate?" << endl;
-            cin >> choice;
-            Farm::Tick(choice);
-
+            cin >> tick_choice;
+            Farm::Tick(tick_choice);
             break;
         }
         case 4:

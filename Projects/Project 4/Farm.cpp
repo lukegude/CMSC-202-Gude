@@ -11,6 +11,10 @@ Farm::Farm()
 
 Farm::~Farm()
 {
+    for (int i = 0; i < m_farm.size(); i++)
+    {
+        delete m_farm[i];
+    }
 }
 
 int Farm::ChooseItem()
@@ -35,25 +39,19 @@ void Farm::AddItem(int type, int quantity)
         {
         case 1: //Animal
         {
-            Animal *chicken = new Animal;
-            m_farm.push_back(chicken);
-            delete chicken;
+            m_farm.push_back(new Animal());
             cout << "New Animal added to the farm." << endl;
             break;
         }
         case 2: //Vegetable
         {
-            Vegetable *vegetable = new Vegetable();
-            m_farm.push_back(vegetable);
-            delete vegetable;
+            m_farm.push_back(new Vegetable());
             cout << "New Vegetable added to the farm." << endl;
             break;
         }
         case 3: //Tree
         {
-            Tree *tree = new Tree();
-            m_farm.push_back(tree);
-            delete tree;
+            m_farm.push_back(new Tree());
             cout << "New Tree added to the farm." << endl;
             break;
         }
@@ -65,14 +63,69 @@ void Farm::AddItem(int type, int quantity)
 
 void Farm::Tick(int season)
 {
-    for (int i = 0; i < season; i++)
+    for (int n = 0; n < season; n++)
     {
-        cout << "SEASON: " << m_season << endl;
+        vector<string> Harvested;
+        for (int i = 0; i < m_farm.size(); i++)
+        {
+            bool gotHarvested;
+            do
+            {
+                gotHarvested = false;
+                if (m_farm.size() > 0)
+                {
+                    string type = m_farm[i]->GetType();
+
+                    if (type == "Animal")
+                    {
+                        if (m_farm[i]->GetIsHarvestable())
+                        {
+                            int money = m_farm[i]->Harvest();
+                            m_money += money;
+                            Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
+                            delete m_farm[i];
+                            m_farm.erase(m_farm.begin() + (i));
+                            gotHarvested = true;
+                        }
+                        if (m_food != 0)
+                        {
+                            m_farm[i]->Tick(true);
+                            m_food--;
+                        }
+
+                        else
+                        {
+                            m_farm[i]->Tick(false);
+                        }
+                    }
+                    else if (type == "Vegetable")
+                    {
+                        if (m_farm[i]->GetIsHarvestable())
+                        {
+                            int food = m_farm[i]->Harvest();
+                            m_food += food;
+                            Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
+                            delete m_farm[i];
+                            m_farm.erase(m_farm.begin() + (i));
+                            gotHarvested = true;
+                        }
+                        m_farm[i]->Tick(true);
+                    }
+                }
+            } while (gotHarvested);
+        }
+        cout << endl
+             << "SEASON: " << m_season << endl;
+        for (int i = 0; i < Harvested.size(); i++)
+            cout << Harvested[i] << endl;
+        Farm::Status();
+        m_season++;
     }
 }
 
 int Farm::Menu()
 {
+
     int choice;
     cout << "1. Add Item to Farm" << endl;
     cout << "2. Add Two of Each Item to Farm" << endl;
@@ -105,13 +158,23 @@ void Farm::StartSimulation()
             break;
         }
         case 2:
+        {
+            for (int i = 1; i < 4; i++)
+            {
+                Farm::AddItem(i, 2);
+            }
             break;
+        }
         case 3:
+        {
             cout << "How many seasons to simulate?" << endl;
             cin >> choice;
             Farm::Tick(choice);
+
             break;
+        }
         case 4:
+            Farm::Status();
             break;
         case 5:
             cout << "Thank you for simulating Stardew Valley!" << endl;
@@ -125,4 +188,19 @@ void Farm::StartSimulation()
 void Farm::Status()
 {
     cout << "\t**** Farm Status ****" << endl;
+    cout << "Food: " << m_food << endl;
+    cout << "Money: " << m_money << endl;
+    cout << "Season: " << m_season << endl;
+    cout << "Agricultural Items:" << endl;
+    if (m_farm.size() > 0)
+    {
+        for (int i = 0; i < m_farm.size(); i++)
+        {
+            (*m_farm.at(i)) << cout << endl;
+        }
+    }
+    else
+    {
+        cout << "None" << endl;
+    }
 }

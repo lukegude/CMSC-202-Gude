@@ -3,6 +3,7 @@
 Animal::Animal()
 {
     m_name = "Chicken";
+    m_IsHungry = false;
 }
 
 void Animal::Tick(bool isFed)
@@ -42,28 +43,22 @@ ostream &Animal::operator<<(ostream &os)
 {
     string harvestable;
     string fed;
-    switch (Animal::GetIsHarvestable())
+    if (Animal::GetIsHarvestable())
     {
-    case 0:
-        harvestable = "Not Harvestable";
-        break;
-    case 1:
         harvestable = "Harvestable";
-        break;
-    default:
-        break;
+    }
+    else
+    {
+        harvestable = "Not Harvestable";
     }
 
-    switch (Animal::m_IsHungry)
+    if (Animal::m_IsHungry)
     {
-    case 1:
         fed = "Not Fed";
-        break;
-    case 0:
+    }
+    else
+    {
         fed = "Fed";
-        break;
-    default:
-        break;
     }
 
     os << Animal::GetType() << CONCAT << Animal::m_name << CONCAT << harvestable << CONCAT << ANIMAL_SIZE[Animal::GetSize()] << CONCAT << fed;

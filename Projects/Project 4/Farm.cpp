@@ -111,6 +111,20 @@ void Farm::Tick(int season)
                         }
                         m_farm[i]->Tick(true);
                     }
+                    else if (type == "Tree")
+                    {
+                        if (m_farm[i]->GetIsHarvestable())
+                        {
+                            Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
+                            delete m_farm[i];
+                            m_farm.erase(m_farm.begin() + (i));
+                            gotHarvested = true;
+                        }
+                        else
+                        {
+                            m_farm[i]->Tick(true);
+                        }
+                    }
                 }
             } while (gotHarvested);
         }

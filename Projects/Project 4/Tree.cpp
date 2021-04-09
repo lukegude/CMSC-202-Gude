@@ -1,31 +1,70 @@
 #include "Tree.h"
 
-Tree::Tree(){
+Tree::Tree()
+{
     m_age = 0;
 }
 
 Tree::~Tree()
-{}
+{
+    for (int i = 0; i < m_fruit.size(); i++)
+    {
+        delete m_fruit[i];
+    }
+}
 
-void Tree::Tick(bool flag){}
+void Tree::Tick(bool flag)
+{
+    cout << "Tree Age: " << m_age << endl;
+    if (Tree::GetSize() < 3)
+    {
+        if (m_age % 4 == 0)
+        {
+            Tree::SetSize(Tree::GetSize() + 1);
+        }
+    }
+    else
+    {
+        if (m_age % 12 == 0)
+        {
+            m_fruit.push_back(new Fruit());
+        }
+    }
+    if (m_age >= 60)
+    {
+        Tree::SetIsHarvestable(true);
+    }
+    m_age++;
+}
 
-int Tree::Harvest(){}
+int Tree::Harvest()
+{
+    return m_fruit.size();
+}
 
-string Tree::GetType(){
+string Tree::GetType()
+{
     return "Tree";
 }
 
-ostream& Tree::operator<<(ostream& os){
+ostream &Tree::operator<<(ostream &os)
+{
     string harvestable;
-    switch (Tree::GetIsHarvestable())
-    {
-    case 0:
-        harvestable = "Not Harvestable";
-        break;
-    case 1:
+    string fruiting;
+    if (Tree::GetIsHarvestable()){
         harvestable = "Harvestable";
-        break;
     }
-    os << Tree::GetType() << CONCAT << TREE_SIZE[Tree::GetSize()] << CONCAT << harvestable << CONCAT << "Not Fruiting" << CONCAT << "Fruit Count: " << m_fruit.size();
+    else {
+        harvestable = "Not Harvestable";
+    }
+    if (m_age > 12)
+    {
+        fruiting = "Fruiting";
+    }
+    else
+    {
+        fruiting = "Not Fruiting";
+    }
+    os << Tree::GetType() << CONCAT << TREE_SIZE[Tree::GetSize()] << CONCAT << harvestable << CONCAT << fruiting << CONCAT << "Fruit Count: " << m_fruit.size();
     return os;
 };

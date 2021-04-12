@@ -1,7 +1,7 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 int main (){
-cout << 11 % 12 << endl;
-
+    for (int i = 0; i < 0; i++){
+        cout << i << endl;
+    }
 }

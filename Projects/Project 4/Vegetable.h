@@ -8,7 +8,7 @@
 #include "AgItem.h"
 
 //Constants
-const string Veg_Size[] = {"Seedling", "Medium", "Fully Mature"}; //Names of the sizes
+const string Veg_Size[] {"Seedling", "Medium", "Fully Mature"}; //Names of the sizes
 const int MAX_VEG_SIZE = 2; //1 = seedling 2 = medium 3 = fully mature
 
 class Vegetable: public AgItem {

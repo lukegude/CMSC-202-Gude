@@ -87,15 +87,18 @@ void Farm::Tick(int season)
                             m_farm.erase(m_farm.begin() + (i));
                             gotHarvested = true;
                         }
-                        if (m_food != 0)
+                        if (!gotHarvested)
                         {
-                            m_farm[i]->Tick(true);
-                            m_food--;
-                        }
+                            if (m_food != 0)
+                            {
+                                m_farm[i]->Tick(true);
+                                m_food--;
+                            }
 
-                        else
-                        {
-                            m_farm[i]->Tick(false);
+                            else
+                            {
+                                m_farm[i]->Tick(false);
+                            }
                         }
                     }
                     else if (type == "Vegetable")
@@ -109,20 +112,24 @@ void Farm::Tick(int season)
                             m_farm.erase(m_farm.begin() + (i));
                             gotHarvested = true;
                         }
-                        m_farm[i]->Tick(true);
+                        if (!gotHarvested)
+                            m_farm[i]->Tick(true);
                     }
                     else if (type == "Tree")
                     {
+
                         if (m_farm[i]->GetIsHarvestable())
                         {
                             Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
                             delete m_farm[i];
+                            m_farm[i] = NULL;
                             m_farm.erase(m_farm.begin() + (i));
                             gotHarvested = true;
                         }
-                        else
+                        if (!gotHarvested)
                         {
                             m_farm[i]->Tick(true);
+                            m_food += m_farm[i]->Harvest();
                         }
                     }
                 }

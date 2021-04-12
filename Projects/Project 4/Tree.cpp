@@ -15,7 +15,6 @@ Tree::~Tree()
 
 void Tree::Tick(bool flag)
 {
-    cout << "Tree Age: " << m_age << endl;
     if (Tree::GetSize() < 3)
     {
         if (m_age % 4 == 0)
@@ -30,7 +29,7 @@ void Tree::Tick(bool flag)
             m_fruit.push_back(new Fruit());
         }
     }
-    if (m_age >= 60)
+    if (m_age == 60)
     {
         Tree::SetIsHarvestable(true);
     }
@@ -39,7 +38,12 @@ void Tree::Tick(bool flag)
 
 int Tree::Harvest()
 {
-    return m_fruit.size();
+    int fruit = m_fruit.size();
+    for (int i = 0; i < m_fruit.size(); i++){
+        delete m_fruit[i];
+    }
+    m_fruit.clear();
+    return fruit;
 }
 
 string Tree::GetType()
@@ -51,10 +55,12 @@ ostream &Tree::operator<<(ostream &os)
 {
     string harvestable;
     string fruiting;
-    if (Tree::GetIsHarvestable()){
+    if (Tree::GetIsHarvestable())
+    {
         harvestable = "Harvestable";
     }
-    else {
+    else
+    {
         harvestable = "Not Harvestable";
     }
     if (m_age > 12)

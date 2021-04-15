@@ -20,7 +20,7 @@ Farm::~Farm()
 int Farm::ChooseItem()
 {
     string ag_items[] = {"Animal", "Vegetable", "Tree"};
-    int chosen_item;
+    int chosen_item; //Number chosen from 1-3
     cout << "Which agricultural item are you interested in?" << endl;
     for (int i = 0; i < 3; i++)
     {
@@ -65,22 +65,22 @@ void Farm::Tick(int season)
 {
     for (int n = 0; n < season; n++)
     {
-        vector<string> Harvested;
+        vector<string> Harvested; //Vector of strings to print when the objects get harvested
         for (int i = 0; i < m_farm.size(); i++)
         {
-            bool gotHarvested;
+            bool gotHarvested; //Boolean to loop again if harvested
             do
             {
                 gotHarvested = false;
                 if (m_farm.size() > 0)
                 {
-                    string type = m_farm[i]->GetType();
+                    string type = m_farm[i]->GetType(); //Type of Farm stock
 
                     if (type == "Animal")
                     {
                         if (m_farm[i]->GetIsHarvestable())
                         {
-                            int money = m_farm[i]->Harvest();
+                            int money = m_farm[i]->Harvest(); // Worth * Size of the animal
                             m_money += money;
                             Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
                             delete m_farm[i];
@@ -92,12 +92,12 @@ void Farm::Tick(int season)
                             if (m_food != 0)
                             {
                                 m_farm[i]->Tick(true);
-                                m_food--;
+                                m_food--; //Lose a food by feeding the animals
                             }
 
                             else
                             {
-                                m_farm[i]->Tick(false);
+                                m_farm[i]->Tick(false); //Doesn't lose food because there is no food to lose
                             }
                         }
                     }
@@ -105,7 +105,7 @@ void Farm::Tick(int season)
                     {
                         if (m_farm[i]->GetIsHarvestable())
                         {
-                            int food = m_farm[i]->Harvest();
+                            int food = m_farm[i]->Harvest(); //Integer to add to the farm's total food
                             m_food += food;
                             Harvested.push_back("The " + m_farm[i]->GetType() + " was harvested");
                             delete m_farm[i];
@@ -129,7 +129,7 @@ void Farm::Tick(int season)
                         if (!gotHarvested)
                         {
                             m_farm[i]->Tick(true);
-                            m_food += m_farm[i]->Harvest();
+                            m_food += m_farm[i]->Harvest(); //Adds the apples to the farm's food
                         }
                     }
                 }
@@ -147,7 +147,7 @@ void Farm::Tick(int season)
 int Farm::Menu()
 {
 
-    int choice;
+    int choice; //Choice of the user (1-5)
     cout << "1. Add Item to Farm" << endl;
     cout << "2. Add Two of Each Item to Farm" << endl;
     cout << "3. Simulate Time" << endl;
@@ -166,7 +166,7 @@ int Farm::Menu()
 void Farm::StartSimulation()
 {
     cout << "Welcome to Stardew Valley Simulator" << endl;
-    int choice;
+    int choice; // Result of Menu function
     do
     {
         choice = Farm::Menu();
@@ -174,13 +174,13 @@ void Farm::StartSimulation()
         {
         case 1:
         {
-            int type = Farm::ChooseItem();
+            int type = Farm::ChooseItem(); //Type of item the user wants to add
             Farm::AddItem(type, 1);
             break;
         }
         case 2:
         {
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 4; i++) //Adds two of each item to the farm
             {
                 Farm::AddItem(i, 2);
             }
@@ -188,7 +188,7 @@ void Farm::StartSimulation()
         }
         case 3:
         {
-            int tick_choice;
+            int tick_choice; //Integer for how many seasons the user wants to simulate
             cout << "How many seasons to simulate?" << endl;
             cin >> tick_choice;
             Farm::Tick(tick_choice);

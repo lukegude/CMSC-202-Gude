@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 int main (){
-    for (int i = 0; i < 0; i++){
-        cout << i << endl;
+    float hi = 255.00;
+    if (int(hi) == 255){
+        cout << "Yes" << endl;
     }
 }

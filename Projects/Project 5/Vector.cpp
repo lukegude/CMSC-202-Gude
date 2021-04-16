@@ -165,7 +165,9 @@ private:
 // **** Add class definition below ****
 
 template <class T>
-Vector<T>::Vector() {}
+Vector<T>::Vector() {
+  m_head = nullptr;
+}
 
 template <class T>
 Vector<T>::~Vector() {}
@@ -177,10 +179,44 @@ template <class T>
 T Vector<T>::operator[](int indx) {}
 
 template <class T>
-void Vector<T>::Insert(T node) {}
+void Vector<T>::Insert(T node)
+{
+  if (m_head == NULL)
+  {
+    m_head = node;
+  }
+  else
+  {
+    Node<T> *current = m_head;
+    while (current != NULL)
+    {
+      current = current->getNextNode();
+    }
+    current->setNextNode(node);
+  }
+}
 
 template <class T>
-void Vector<T>::SortedInsert(T node) {}
+void Vector<T>::SortedInsert(T node_value)
+{
+  Node<T>* node = new Node<T>(node_value);
+  if (m_head == NULL || m_head->getValue() >= node->getValue())
+  {
+    node->setNextNode(m_head);
+    m_head = node;
+  }
+  else
+  {
+
+    Node<T>* current = m_head;
+    while (current->getNextNode() != NULL && current->getNextNode()->getValue() < node->getValue()){
+      current = current->getNextNode();
+    }
+    node->setNextNode(current->getNextNode());
+    current->setNextNode(node);
+    //Selection sort algorithm
+  }
+}
 
 template <class T>
 void Vector<T>::Remove(int indx) {}
@@ -198,7 +234,21 @@ template <class T>
 Vector<char> *Vector<T>::operator==(Vector<T> &other) {}
 
 template <class T>
-int Vector<T>::Size() {}
+int Vector<T>::Size()
+{
+  int size = 0;
+  if (m_head != NULL)
+  {
+    Node<T> *current = m_head;
+    size = 1;
+    while (current != NULL)
+    {
+      size++;
+      current = current->getNextNode();
+    }
+  }
+  return size;
+}
 
 template <class T>
 void Vector<T>::Display() {}

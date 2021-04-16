@@ -34,10 +34,25 @@ private:
 
 // **** Add class definition below ****
 template <class T>
-Runner<T>::Runner(Vector<T>*,Vector<T>*){}
+Runner<T>::Runner(Vector<T>*,Vector<T>*){
+    int choice;
+    do {
+    choice = Runner<T>::mainMenu();
+    } while (choice != 9);
+}
 
 template <class T>
-int Runner<T>::mainMenu(){}
+int Runner<T>::mainMenu(){
+    int choice;
+    string options[] = {"Display Vectors", "Vector comparison (<)", "Vector comparison (==)", "Vector addition", "Vector multiplication", "Compute median", "Compute mean", "Compute Standard Derivation", "Exit"};
+    cout << "Choose an option" << endl;
+    for (int i = 0; i < 9; i++){
+        cout << i+1 << ". " << options[i] << endl;
+    }
+    cin >> choice;
+    return choice;
+
+}
 
 
 

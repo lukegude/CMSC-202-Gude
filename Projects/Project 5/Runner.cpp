@@ -33,8 +33,11 @@ private:
 };
 
 // **** Add class definition below ****
+template <class T>
+Runner<T>::Runner(Vector<T>*,Vector<T>*){}
 
-
+template <class T>
+int Runner<T>::mainMenu(){}
 
 
 

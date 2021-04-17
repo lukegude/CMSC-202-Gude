@@ -165,7 +165,8 @@ private:
 // **** Add class definition below ****
 
 template <class T>
-Vector<T>::Vector() {
+Vector<T>::Vector()
+{
   m_head = nullptr;
 }
 
@@ -173,14 +174,30 @@ template <class T>
 Vector<T>::~Vector() {}
 
 template <class T>
-Vector<T> *Vector<T>::operator=(Vector<T> *source) {}
-
-template <class T>
-T Vector<T>::operator[](int indx) {}
-
-template <class T>
-void Vector<T>::Insert(T node)
+Vector<T> *Vector<T>::operator=(Vector<T> *source)
 {
+  Vector<T> *copy;
+  copy = source;
+  return copy;
+}
+
+template <class T>
+T Vector<T>::operator[](int indx)
+{
+  T index;
+  Node<T> *current = m_head;
+  for (int i = 0; i < indx; i++)
+  {
+    current = current->getNextNode();
+  }
+  index = current->getValue();
+  return index;
+}
+
+template <class T>
+void Vector<T>::Insert(T node_value)
+{
+  Node<T> *node = new Node<T>(node_value);
   if (m_head == NULL)
   {
     m_head = node;
@@ -188,7 +205,7 @@ void Vector<T>::Insert(T node)
   else
   {
     Node<T> *current = m_head;
-    while (current != NULL)
+    for (int i = 0; i < Vector<T>::Size() - 2; i++)
     {
       current = current->getNextNode();
     }
@@ -199,7 +216,7 @@ void Vector<T>::Insert(T node)
 template <class T>
 void Vector<T>::SortedInsert(T node_value)
 {
-  Node<T>* node = new Node<T>(node_value);
+  Node<T> *node = new Node<T>(node_value);
   if (m_head == NULL || m_head->getValue() >= node->getValue())
   {
     node->setNextNode(m_head);
@@ -207,28 +224,83 @@ void Vector<T>::SortedInsert(T node_value)
   }
   else
   {
-
-    Node<T>* current = m_head;
-    while (current->getNextNode() != NULL && current->getNextNode()->getValue() < node->getValue()){
+    Node<T> *current = m_head;
+    while (current->getNextNode() != NULL && current->getNextNode()->getValue() < node->getValue())
+    {
       current = current->getNextNode();
     }
     node->setNextNode(current->getNextNode());
     current->setNextNode(node);
-    //Selection sort algorithm
   }
 }
 
 template <class T>
-void Vector<T>::Remove(int indx) {}
+void Vector<T>::Remove(int indx)
+{
+  Node<T> *current = m_head;
+  for (int i = 0; i < indx - 1; i++)
+  {
+    current = current->getNextNode();
+  }
+  Node<T> *tmp = current;
+  current = current->getNextNode();
+  tmp->setNextNode(current->getNextNode());
+  delete current;
+}
 
 template <class T>
-Vector<T> *Vector<T>::operator+(Vector<T> &source) {}
+Vector<T> *Vector<T>::operator+(Vector<T> &source)
+{
+  Node<T> *current_first = this->m_head;
+  Node<T> *current_source = source.m_head;
+  float added_value;
+  Vector<T> *added_vector = new Vector<T>();
+  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  {
+    added_value = (current_first->getValue() + current_source->getValue());
+    added_vector->Insert(added_value);
+    current_first = current_first->getNextNode();
+    current_source = current_source->getNextNode();
+  }
+  return added_vector;
+}
 
 template <class T>
-Vector<T> *Vector<T>::operator*(Vector<T> &other) {}
+Vector<T> *Vector<T>::operator*(Vector<T> &other)
+{
+  Node<T> *current_first = this->m_head;
+  Node<T> *current_source = other.m_head;
+  float mul_value;
+  Vector<T> *mul_vector = new Vector<T>();
+  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  {
+    mul_value = (current_first->getValue() * current_source->getValue());
+    mul_vector->Insert(mul_value);
+    current_first = current_first->getNextNode();
+    current_source = current_source->getNextNode();
+  }
+  return mul_vector;
+}
 
 template <class T>
-Vector<char> *Vector<T>::operator<(Vector<T> &other) {}
+Vector<char> *Vector<T>::operator<(Vector<T> &other)
+{
+  Node<T> *current_first = this->m_head;
+  Node<T> *current_source = other.m_head;
+  char bool_value;
+  Vector<T> *bool_vector = new Vector<T>();
+  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  {
+    if (current_first->getValue() < current_source->getValue())
+      bool_value = 'T';
+    else
+      bool_value = 'F';
+    bool_vector->Insert(bool_value);
+    current_first = current_first->getNextNode();
+    current_source = current_source->getNextNode();
+  }
+  return bool_vector;
+}
 
 template <class T>
 Vector<char> *Vector<T>::operator==(Vector<T> &other) {}
@@ -251,7 +323,18 @@ int Vector<T>::Size()
 }
 
 template <class T>
-void Vector<T>::Display() {}
+void Vector<T>::Display()
+{
+  Node<T> *current = m_head;
+  while (current != NULL)
+  {
+    if (current->getNextNode() != NULL)
+      cout << current->getValue() << ", ";
+    else
+      cout << current->getValue();
+    current = current->getNextNode();
+  }
+}
 
 template <class T>
 float Vector<T>::Median() {}

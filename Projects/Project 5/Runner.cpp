@@ -55,9 +55,18 @@ Runner<T>::Runner(Vector<T> *vector1, Vector<T> *vector2)
         case 2:
         {
             cout << "Vector1 < Vector2: ";
-            Vector<T>* bool_vector = (*vector1) < (*vector2);
+            Vector<char>* bool_vector = (*vector1) < (*vector2);
             bool_vector->Display();
             cout << endl;
+            break;
+        }
+        case 3:
+        {
+            cout << "Vector1 == Vector2: ";
+            Vector<char>* bool_vector = (*vector1) == (*vector2);
+            bool_vector->Display();
+            cout << endl;
+            break;
         }
         case 4:
         {

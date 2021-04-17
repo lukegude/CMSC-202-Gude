@@ -288,13 +288,12 @@ Vector<char> *Vector<T>::operator<(Vector<T> &other)
   Node<T> *current_first = this->m_head;
   Node<T> *current_source = other.m_head;
   char bool_value;
-  Vector<T> *bool_vector = new Vector<T>();
+  Vector<char> *bool_vector = new Vector<char>();
   for (int i = 0; i < Vector<T>::Size() - 1; i++)
   {
+    bool_value = 'F';
     if (current_first->getValue() < current_source->getValue())
       bool_value = 'T';
-    else
-      bool_value = 'F';
     bool_vector->Insert(bool_value);
     current_first = current_first->getNextNode();
     current_source = current_source->getNextNode();
@@ -303,7 +302,22 @@ Vector<char> *Vector<T>::operator<(Vector<T> &other)
 }
 
 template <class T>
-Vector<char> *Vector<T>::operator==(Vector<T> &other) {}
+Vector<char> *Vector<T>::operator==(Vector<T> &other) {
+  Node<T> *current_first = this->m_head;
+  Node<T> *current_source = other.m_head;
+  char bool_value;
+  Vector<char> *bool_vector = new Vector<char>();
+  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  {
+    bool_value = 'F';
+    if (current_first->getValue() == current_source->getValue())
+      bool_value = 'T';
+    bool_vector->Insert(bool_value);
+    current_first = current_first->getNextNode();
+    current_source = current_source->getNextNode();
+  }
+  return bool_vector;
+}
 
 template <class T>
 int Vector<T>::Size()

@@ -171,7 +171,20 @@ Vector<T>::Vector()
 }
 
 template <class T>
-Vector<T>::~Vector() {}
+Vector<T>::~Vector()
+{
+  Node<T> *current = m_head;
+  Node<T> *temp;
+  while (current != NULL)
+  {
+    if (current != NULL)
+    {
+      temp = current;
+      current = current->getNextNode();
+      delete temp;
+    }
+  }
+}
 
 template <class T>
 Vector<T> *Vector<T>::operator=(Vector<T> *source)
@@ -205,7 +218,7 @@ void Vector<T>::Insert(T node_value)
   else
   {
     Node<T> *current = m_head;
-    for (int i = 0; i < Vector<T>::Size() - 2; i++)
+    while (current->getNextNode() != NULL)
     {
       current = current->getNextNode();
     }
@@ -255,7 +268,7 @@ Vector<T> *Vector<T>::operator+(Vector<T> &source)
   Node<T> *current_source = source.m_head;
   float added_value;
   Vector<T> *added_vector = new Vector<T>();
-  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  for (int i = 0; i < Vector<T>::Size(); i++)
   {
     added_value = (current_first->getValue() + current_source->getValue());
     added_vector->Insert(added_value);
@@ -272,7 +285,7 @@ Vector<T> *Vector<T>::operator*(Vector<T> &other)
   Node<T> *current_source = other.m_head;
   float mul_value;
   Vector<T> *mul_vector = new Vector<T>();
-  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  while (current_first->getNextNode() != NULL)
   {
     mul_value = (current_first->getValue() * current_source->getValue());
     mul_vector->Insert(mul_value);
@@ -285,24 +298,21 @@ Vector<T> *Vector<T>::operator*(Vector<T> &other)
 template <class T>
 Vector<char> *Vector<T>::operator<(Vector<T> &other)
 {
-  Node<T> *current_first = this->m_head;
-  Node<T> *current_source = other.m_head;
   char bool_value;
   Vector<char> *bool_vector = new Vector<char>();
-  for (int i = 0; i < Vector<T>::Size() - 1; i++)
+  for (int i = 0; i < Vector<T>::Size(); i++)
   {
     bool_value = 'F';
-    if (current_first->getValue() < current_source->getValue())
+    if ((*this)[i] < other[i])
       bool_value = 'T';
     bool_vector->Insert(bool_value);
-    current_first = current_first->getNextNode();
-    current_source = current_source->getNextNode();
   }
   return bool_vector;
 }
 
 template <class T>
-Vector<char> *Vector<T>::operator==(Vector<T> &other) {
+Vector<char> *Vector<T>::operator==(Vector<T> &other)
+{
   Node<T> *current_first = this->m_head;
   Node<T> *current_source = other.m_head;
   char bool_value;
@@ -333,7 +343,7 @@ int Vector<T>::Size()
       current = current->getNextNode();
     }
   }
-  return size;
+  return size - 1;
 }
 
 template <class T>
@@ -351,12 +361,45 @@ void Vector<T>::Display()
 }
 
 template <class T>
-float Vector<T>::Median() {}
+float Vector<T>::Median()
+{
+  int size = Vector<T>::Size();
+  if (size % 2 == 0)
+  {
+    return (((*this)[size / 2] + (*this)[(size / 2) + 1]) / 2.0);
+  }
+  else
+  {
+    return (*this)[size / 2];
+  }
+}
 
 template <class T>
-float Vector<T>::Mean() {}
+float Vector<T>::Mean()
+{
+  float mean = 0;
+  int size = Vector<T>::Size();
+  Node<T> *current = m_head;
+  while (current != NULL)
+  {
+    mean += current->getValue();
+    current = current->getNextNode();
+  }
+  return float(mean / size);
+}
 
 template <class T>
-float Vector<T>::StDev() {}
+float Vector<T>::StDev()
+{
+  float original_mean = Vector<T>::Mean();
+  int size = Vector<T>::Size();
+  float new_squared_mean = 0;
+  for (int i = 0; i < size; i++)
+  {
+    new_squared_mean += pow(((*this)[i] - original_mean), 2);
+  }
+  new_squared_mean /= size;
+  return sqrt(new_squared_mean);
+}
 
 #endif /* VECTOR_CPP */

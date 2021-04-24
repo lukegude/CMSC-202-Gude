@@ -58,6 +58,8 @@ Runner<T>::Runner(Vector<T> *vector1, Vector<T> *vector2)
             Vector<char>* bool_vector = (*vector1) < (*vector2);
             bool_vector->Display();
             cout << endl;
+            delete bool_vector;
+            bool_vector = NULL;
             break;
         }
         case 3:
@@ -66,6 +68,7 @@ Runner<T>::Runner(Vector<T> *vector1, Vector<T> *vector2)
             Vector<char>* bool_vector = (*vector1) == (*vector2);
             bool_vector->Display();
             cout << endl;
+            delete bool_vector;
             break;
         }
         case 4:
@@ -74,6 +77,7 @@ Runner<T>::Runner(Vector<T> *vector1, Vector<T> *vector2)
             Vector<T> *added_vector = (*vector1) + (*vector2);
             added_vector->Display();
             cout << endl;
+            delete added_vector;
             break;
         }
         case 5:
@@ -82,6 +86,25 @@ Runner<T>::Runner(Vector<T> *vector1, Vector<T> *vector2)
             Vector<T> *mul_vector = (*vector1) * (*vector2);
             mul_vector->Display();
             cout << endl;
+            delete mul_vector;
+            break;
+        }
+        case 6:
+        {
+            cout << "Vector1 median: " << vector1->Median() << endl;
+            cout << "Vector2 median: " << vector2->Median() << endl;
+            break;
+        }
+        case 7:
+        {
+            cout << "Vector1 mean: " << vector1->Mean() << endl;
+            cout << "Vector2 mean: " << vector2->Mean() << endl;
+            break;
+        }
+        case 8:
+        {
+            cout << "Vector1 stdev: " << vector1->StDev() << endl;
+            cout << "Vector2 stdev: " << vector2->StDev() << endl;
             break;
         }
         default:

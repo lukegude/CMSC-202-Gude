@@ -18,7 +18,8 @@
 			"streambuf": "cpp",
 			"string": "cpp",
 			"iostream": "cpp",
-			"iosfwd": "cpp"
+			"iosfwd": "cpp",
+			"__hash_table": "cpp"
 		}
 	}
 }

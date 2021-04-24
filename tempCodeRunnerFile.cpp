@@ -1,8 +1,9 @@
 #include <iostream>
+#include <string>
 using namespace std;
 int main (){
-    float hi = 255.00;
-    if (int(hi) == 255){
-        cout << "Yes" << endl;
-    }
+    string hello = "Hell";
+    string wortl = "no";
+    string hi = hello + wortl;
+    cout << hi << endl;
 }

@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+//***************** Implement UserPair Here *********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//**************************************************************
+int main() {
+  //Declare a UserPair for ints named intPair with an initial value of 1 and 5
+  //Declare a UserPair for strings named stringPair with initial value of Hello and World
+  
+
+  //**************
+  cout << "intPair: {" << intPair.First() << ", " << intPair.Second() << "}\n";
+  cout << "stringPair: {" << stringPair.First() << ", " << stringPair.Second() << "}\n";
+
+  cout << "intPair max: " << intPair.GetMax() << endl
+       << "intPair min: " << intPair.GetMin() << endl
+       << "intPair sum: " << intPair.GetSum() << endl
+       << "stringPair max: " << stringPair.GetMax() << endl
+       << "stringPair min: " << stringPair.GetMin() << endl
+       << "stringPair sum: " << stringPair.GetSum() << endl;
+
+  return 0;
+}

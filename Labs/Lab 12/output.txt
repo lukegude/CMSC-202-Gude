@@ -1,0 +1,188 @@
+[lgude1@linux4 lab12] make val
+valgrind ./lab12
+==2967149== Memcheck, a memory error detector
+==2967149== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2967149== Using Valgrind-3.16.0 and LibVEX; rerun with -h for copyright info
+==2967149== Command: ./lab12
+==2967149== 
+Starting Copy Constructor Test
+COLLECTION 1: 
+RPG Collection: (SIZE : 5)
+==2967149== Invalid read of size 8
+==2967149==    at 0x49B2A94: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x401DC5: main (lab12.cpp:19)
+==2967149==  Address 0x4d9a470 is 16 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401A70: GameCollection::RemoveLast() (GameCollection.cpp:128)
+==2967149==    by 0x401D8B: main (lab12.cpp:16)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x401D45: main (lab12.cpp:11)
+==2967149== 
+==2967149== Invalid read of size 8
+==2967149==    at 0x49B2A98: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x401DC5: main (lab12.cpp:19)
+==2967149==  Address 0x4d9a468 is 8 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401A70: GameCollection::RemoveLast() (GameCollection.cpp:128)
+==2967149==    by 0x401D8B: main (lab12.cpp:16)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x401D45: main (lab12.cpp:11)
+==2967149== 
+==2967149== Invalid read of size 1
+==2967149==    at 0x4C3BD24: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x4C30250: fwrite (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x49A0963: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x401DC5: main (lab12.cpp:19)
+==2967149==  Address 0x4d9a485 is 37 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401A70: GameCollection::RemoveLast() (GameCollection.cpp:128)
+==2967149==    by 0x401D8B: main (lab12.cpp:16)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x401D45: main (lab12.cpp:11)
+==2967149== 
+==2967149== Invalid read of size 1
+==2967149==    at 0x4842130: mempcpy (vg_replace_strmem.c:1536)
+==2967149==    by 0x4C3BC41: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x4C30250: fwrite (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x49A0963: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x401DC5: main (lab12.cpp:19)
+==2967149==  Address 0x4d9a478 is 24 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401A70: GameCollection::RemoveLast() (GameCollection.cpp:128)
+==2967149==    by 0x401D8B: main (lab12.cpp:16)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x401D45: main (lab12.cpp:11)
+==2967149== 
+==2967149== Invalid read of size 1
+==2967149==    at 0x484213E: mempcpy (vg_replace_strmem.c:1536)
+==2967149==    by 0x4C3BC41: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x4C30250: fwrite (in /usr/lib64/libc-2.31.so)
+==2967149==    by 0x49A0963: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x401DC5: main (lab12.cpp:19)
+==2967149==  Address 0x4d9a47a is 26 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401A70: GameCollection::RemoveLast() (GameCollection.cpp:128)
+==2967149==    by 0x401D8B: main (lab12.cpp:16)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x401D45: main (lab12.cpp:11)
+==2967149== 
+1: Genshin Impact
+2: CyberPunk 2077
+3: Final Fantasy 17 
+4: Dark Souls 3
+5: Persona
+COLLECTION 1 COPY (copy constructor) with 2 items deleted: 
+RPG Collection: (SIZE : 3)
+1: Genshin Impact
+2: CyberPunk 2077
+3: Final Fantasy 17 
+End of Copy Constructor Test
+
+Start of Overloaded Assignment Operator Test
+COLLECTION 2: 
+FPS Collection: (SIZE : 5)
+==2967149== Invalid read of size 8
+==2967149==    at 0x49B2A94: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x402166: main (lab12.cpp:38)
+==2967149==  Address 0x4d9aa80 is 16 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401810: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:99)
+==2967149==    by 0x4020D1: main (lab12.cpp:35)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x40205D: main (lab12.cpp:31)
+==2967149== 
+==2967149== Invalid read of size 8
+==2967149==    at 0x49B2A98: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <char, std::char_traits<char>, std::allocator<char> >(std::basic_ostream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x40166F: GameCollection::PrintCollection() (GameCollection.cpp:78)
+==2967149==    by 0x402166: main (lab12.cpp:38)
+==2967149==  Address 0x4d9aa78 is 8 bytes inside a block of size 168 free'd
+==2967149==    at 0x483C773: operator delete[](void*, unsigned long) (vg_replace_malloc.c:660)
+==2967149==    by 0x401810: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:99)
+==2967149==    by 0x4020D1: main (lab12.cpp:35)
+==2967149==  Block was alloc'd at
+==2967149==    at 0x483B582: operator new[](unsigned long) (vg_replace_malloc.c:431)
+==2967149==    by 0x4016F0: GameCollection::Insert(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (GameCollection.cpp:86)
+==2967149==    by 0x40205D: main (lab12.cpp:31)
+==2967149== 
+1: Modern Warfare
+2: Cold War
+3: Black Ops 2
+4: Black Ops 3
+5: World at War
+COLLECTION 2 COPY (assignment operator) with 2 extra items inserted: 
+FPS Collection: (SIZE : 7)
+1: Modern Warfare
+2: Cold War
+3: Black Ops 2
+4: Black Ops 3
+5: World at War
+6: MW2
+7: Battlefield 3
+End of Overloaded Assignment Operator Test
+
+Test your code running 'make val' so that it does a memory test
+Deep Copy Test for Copy Constructor
+firstCollection Address: 0x1ffefffe50
+firstCollectionCopy Address: 0x1ffefffe20
+Copy Constructor Passed
+
+Deep Copy Test for Assignment Operator
+secondCollection Address: 0x1ffefffdf0
+secondCollectionAssign Address: 0x1ffefffdc0
+Assignment Operator Passed
+
+==2967149== Invalid read of size 8
+==2967149==    at 0x49B1019: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x4014A2: GameCollection::~GameCollection() (GameCollection.cpp:51)
+==2967149==    by 0x4023A1: main (lab12.cpp:45)
+==2967149==  Address 0x8 is not stack'd, malloc'd or (recently) free'd
+==2967149== 
+==2967149== 
+==2967149== Process terminating with default action of signal 11 (SIGSEGV): dumping core
+==2967149==  Access not within mapped region at address 0x8
+==2967149==    at 0x49B1019: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*) (in /usr/lib64/libstdc++.so.6.0.28)
+==2967149==    by 0x4014A2: GameCollection::~GameCollection() (GameCollection.cpp:51)
+==2967149==    by 0x4023A1: main (lab12.cpp:45)
+==2967149==  If you believe this happened as a result of a stack
+==2967149==  overflow in your program's main thread (unlikely but
+==2967149==  possible), you can try to increase the size of the
+==2967149==  main thread stack using the --main-stacksize= flag.
+==2967149==  The main thread stack size used in this run was 8388608.
+==2967149== 
+==2967149== HEAP SUMMARY:
+==2967149==     in use at exit: 367 bytes in 3 blocks
+==2967149==   total heap usage: 22 allocs, 19 frees, 75,613 bytes allocated
+==2967149== 
+==2967149== LEAK SUMMARY:
+==2967149==    definitely lost: 0 bytes in 0 blocks
+==2967149==    indirectly lost: 0 bytes in 0 blocks
+==2967149==      possibly lost: 0 bytes in 0 blocks
+==2967149==    still reachable: 367 bytes in 3 blocks
+==2967149==                       of which reachable via heuristic:
+==2967149==                         newarray           : 336 bytes in 2 blocks
+==2967149==         suppressed: 0 bytes in 0 blocks
+==2967149== Rerun with --leak-check=full to see details of leaked memory
+==2967149== 
+==2967149== For lists of detected and suppressed errors, rerun with: -s
+==2967149== ERROR SUMMARY: 261 errors from 8 contexts (suppressed: 0 from 0)
+make: *** [makefile:18: val] Segmentation fault (core dumped)
+[lgude1@linux4 lab12] 
+

@@ -170,11 +170,12 @@ Vector<T>::Vector()
   m_head = nullptr;
 }
 
+//Destructor for Vector class
 template <class T>
 Vector<T>::~Vector()
 {
-  Node<T> *current = m_head;
-  Node<T> *temp;
+  Node<T> *current = m_head; // Current location on the linked list (Can be null)
+  Node<T> *temp;             // Non-null node on list
   while (current != NULL)
   {
     if (current != NULL)
@@ -189,7 +190,7 @@ Vector<T>::~Vector()
 template <class T>
 Vector<T> *Vector<T>::operator=(Vector<T> *source)
 {
-  Vector<T> *copy;
+  Vector<T> *copy; //Sets the source to the receiver
   copy = source;
   return copy;
 }

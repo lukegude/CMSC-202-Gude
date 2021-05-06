@@ -187,13 +187,23 @@ Vector<T>::~Vector()
   }
 }
 
+// Copy Constructor
+template <class T>
+Vector<T>::Vector(Vector<T> const &source)
+{
+  m_head = source.m_head;
+}
+
 template <class T>
 Vector<T> *Vector<T>::operator=(Vector<T> *source)
 {
-  Vector<T> *copy; //Sets the source to the receiver
-  copy = source;
-  return copy;
-}
+  Node<T> *current = m_head;
+  for (int i = 0; i < source->Size(); i++)
+  {
+    delete this->operator[](i);
+    this->operator[](i) = source->operator[](i);
+    }
+  }
 
 template <class T>
 T Vector<T>::operator[](int indx)
